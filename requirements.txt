@@ -1,0 +1,6 @@
+django>=5.0
+gunicorn          # The production web server
+psycopg2-binary   # PostgreSQL adapter for Python
+django-cors-headers # Required for your Next.js connection
+dj-database-url   # Recommended: Helps parse the RDS connection string
+python-dotenv     # Helps manage environment variables locally
