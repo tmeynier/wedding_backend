@@ -24,9 +24,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
                             'django-insecure-b-vu@p4qfnwf)0vqj1m-)88)r@c)$y1mn6#fov@^hom+%wjg!+')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.awsapprunner.com', 'your-amplify-app.com']
 
 
 # Application definition
@@ -76,8 +76,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000", # Good to include both variations
+    "https://main.d123456.amplifyapp.com", # Your actual Amplify URL
 ]
 
 
