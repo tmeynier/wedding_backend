@@ -12,6 +12,14 @@ python manage.py runserver
 OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES gunicorn backend.wsgi:application --bind 0.0.0.0:8000
 python manage.py collectstatic
 
+DJANGO_SECRET_KEY=django-insecure-b-vu@p4qfnwf)0vqj1m-)88)r@c)$y1mn6#fov@^hom+%wjg!+
+"ENGINE": "django.db.backends.postgresql",
+"NAME": os.environ.get("DB_NAME", "testdb"),         # Falls back to local testdb
+"USER": os.environ.get("DB_USER", "postgres"),
+"PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
+"HOST": os.environ.get("DB_HOST", "localhost"),
+"PORT": os.environ.get("DB_PORT", "5432"),
+
 # Architecture
 
 1. The Backend: AWS App Runner (Django)
