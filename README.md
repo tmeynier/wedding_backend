@@ -147,3 +147,11 @@ EC2 Nginx: Update your server_name to api.dasha-tristan-wedding.com.
 EC2 Certbot: Run Certbot again for api.dasha-tristan-wedding.com.
 
 Amplify: Now that the root (@) is "free," you can safely add dasha-tristan-wedding.com to Amplify.
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py loaddata initial_data.json
+
+# Setup Postgres SQL DB
+
+pip3 install psycopg2-binary
