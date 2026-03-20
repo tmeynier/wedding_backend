@@ -8,5 +8,10 @@
     "model": "api.item",
     "pk": 2,
     "fields": { "name": "Venue" }
+  },
+  {
+    "model": "api.item",
+    "pk": 2,
+    "fields": { "name": "Another big step" }
   }
 ]
