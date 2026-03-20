@@ -22,6 +22,13 @@ DJANGO_SECRET_KEY=django-insecure-b-vu@p4qfnwf)0vqj1m-)88)r@c)$y1mn6#fov@^hom+%w
 
 https://github.com/Parth2k3/test-django
 
+source venv/bin/activate
+pip3 install django
+pip3 install gunicorn
+pip3 install django-cors-headers
+pip3 install djangorestframework whitenoise
+gunicorn --bind 0.0.0.0:8000 backend.wsgi:application
+
 cd /etc/nginx/sites-available
 sudo nano django_app
 server {
@@ -58,7 +65,6 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 
-sudo ln -s /etc/nginx/sites-available/django_app /etc/nginx/sites-enabled/
 sudo systemctl daemon-reload
 sudo systemctl enable django_app
 sudo systemctl start django_app
@@ -66,6 +72,24 @@ sudo systemctl status django_app
 sudo systemctl reload nginx
 sudo systemctl restart nginx
 cd ~
+
+# Clear the "failed" status
+sudo systemctl reset-failed django_app
+
+# Reload the configuration
+sudo systemctl daemon-reload
+
+# Start it back up
+sudo systemctl start django_app
+
+sudo systemctl status django_app
+
+# Security
+
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+
+
 
 # Architecture
 
