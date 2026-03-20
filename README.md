@@ -94,7 +94,7 @@ sudo systemctl status django_app
 
 sudo apt update
 sudo apt install certbot python3-certbot-nginx
-
+sudo certbot --nginx -d dasha-tristan-wedding.com -d api.dasha-tristan-wedding.com
 
 
 # Architecture
