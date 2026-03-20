@@ -20,6 +20,53 @@ DJANGO_SECRET_KEY=django-insecure-b-vu@p4qfnwf)0vqj1m-)88)r@c)$y1mn6#fov@^hom+%w
 "HOST": os.environ.get("DB_HOST", "localhost"),
 "PORT": os.environ.get("DB_PORT", "5432"),
 
+https://github.com/Parth2k3/test-django
+
+cd /etc/nginx/sites-available
+sudo nano django_app
+server {
+    listen 80;
+    server_name 3.75.86.179;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+sudo ln -s /etc/nginx/sites-available/django_app /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl status nginx
+sudo nano /etc/systemd/system/django_app.service
+
+[Unit]
+Description=Gunicorn instance for django app
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/test-django
+ExecStart=/home/ubuntu/test-django/venv/bin/gunicorn -w 3 --bind 0.0.0.0:8000 
+test.wsgi:application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+sudo ln -s /etc/nginx/sites-available/django_app /etc/nginx/sites-enabled/
+sudo systemctl daemon-reload
+sudo systemctl enable django_app
+sudo systemctl start django_app
+sudo systemctl status django_app
+sudo systemctl reload nginx
+sudo systemctl restart nginx
+cd ~
+
 # Architecture
 
 1. The Backend: AWS App Runner (Django)
