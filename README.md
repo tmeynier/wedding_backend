@@ -73,6 +73,12 @@ sudo systemctl reload nginx
 sudo systemctl restart nginx
 cd ~
 
+sudo systemctl stop django_app
+sudo systemctl daemon-reload
+sudo systemctl restart django_app
+sudo journalctl -u django_app.service -f
+
+
 # Clear the "failed" status
 sudo systemctl reset-failed django_app
 
