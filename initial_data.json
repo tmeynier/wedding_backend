@@ -1,0 +1,12 @@
+[
+  {
+    "model": "api.item",
+    "pk": 1,
+    "fields": { "name": "Catering" }
+  },
+  {
+    "model": "api.item",
+    "pk": 2,
+    "fields": { "name": "Venue" }
+  }
+]

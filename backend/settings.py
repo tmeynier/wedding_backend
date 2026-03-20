@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-b-vu@p4qfnwf)0vqj1m-)88)r@c)$y1mn6#fov@^hom+%wjg!+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.75.86.179', 'api.dasha-tristan-wedding.com']
+ALLOWED_HOSTS = ['api.dasha-tristan-wedding.com']
 
 
 # Application definition
