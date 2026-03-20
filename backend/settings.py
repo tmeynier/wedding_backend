@@ -75,19 +75,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-CORS_ALLOWED_ORIGINS = ['*',
-    # Local Development (Next.js usually runs on 3000)
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+CORS_ALLOWED_ORIGINS = ['*']
+#CORS_ALLOWED_ORIGINS = [
+#    # Local Development (Next.js usually runs on 3000)
+#    "http://localhost:3000",
+#    "http://127.0.0.1:3000",
 
-    # Production Amplify URL
-    "https://main.d12li6v9q2hhjr.amplifyapp.com",
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    '*',
-    "https://main.d12li6v9q2hhjr.amplifyapp.com",
-]
+#    # Production Amplify URL
+#    "https://main.d12li6v9q2hhjr.amplifyapp.com",
+#]
+CSRF_TRUSTED_ORIGINS = ['*']
+#CSRF_TRUSTED_ORIGINS = [
+#    "https://main.d12li6v9q2hhjr.amplifyapp.com",
+#]
 
 
 # Database
