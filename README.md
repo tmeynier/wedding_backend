@@ -154,4 +154,11 @@ python manage.py loaddata initial_data.json
 
 # Setup Postgres SQL DB
 
-pip3 install psycopg2-binary
+# Install the database adapter if you haven't yet
+pip install psycopg2-binary
+
+# Create the tables in RDS
+python manage.py migrate
+
+# Create your login for the new database
+python manage.py createsuperuser
