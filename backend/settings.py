@@ -103,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',                # Your DB Name
         'USER': 'postgres',                # Your Master Username
-        'PASSWORD': 'TM!10998aws',  # The password you set for RDS
+        'PASSWORD': '4Q4>kbDbp-9*y~5j03QE2*1hCu8#',  # The password you set for RDS
         'HOST': 'test-database.cpsyqeoueatq.eu-central-1.rds.amazonaws.com', # Found in RDS "Endpoint"
         'PORT': '5432',
     }
