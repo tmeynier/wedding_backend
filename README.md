@@ -31,9 +31,19 @@ gunicorn --bind 0.0.0.0:8000 backend.wsgi:application
 
 cd /etc/nginx/sites-available
 sudo nano django_app
+
 server {
     listen 80;
-    server_name 3.75.86.179;
+    server_name api.dasha-tristan-wedding.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name api.dasha-tristan-wedding.com;
+
+    ssl_certificate /etc/letsencrypt/live/api.dasha-tristan-wedding.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.dasha-tristan-wedding.com/privkey.pem;
 
     location / {
         proxy_pass http://127.0.0.1:8000;
@@ -42,7 +52,12 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
+
+    location /static/ {
+        alias /home/ubuntu/wedding_backend/staticfiles/;
+    }
 }
+
 sudo ln -s /etc/nginx/sites-available/django_app /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl start nginx
@@ -57,9 +72,8 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/test-django
-ExecStart=/home/ubuntu/test-django/venv/bin/gunicorn -w 3 --bind 0.0.0.0:8000 
-test.wsgi:application
+WorkingDirectory=/home/ubuntu/wedding_backend
+ExecStart=/home/ubuntu/wedding_backend/venv/bin/gunicorn -w 3 --bind 0.0.0.0:8000 backend.wsgi:application
 Restart=always
 
 [Install]
@@ -162,3 +176,9 @@ python manage.py migrate
 
 # Create your login for the new database
 python manage.py createsuperuser
+
+# Connect to database
+
+sudo apt install postgresql-client -y
+psql -h test-database.cpsyqeoueatq.eu-central-1.rds.amazonaws.com -U postgres -d postgres
+password: 4Q4>kbDbp-9*y~5j03QE2*1hCu8#
