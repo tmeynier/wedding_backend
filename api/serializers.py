@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Item
+from .models import Guest
 
-class ItemSerializer(serializers.ModelSerializer):
+class GuestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
-        fields = '__all__'
+        model = Guest
+        fields = ['first_name', 'last_name']

@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-b-vu@p4qfnwf)0vqj1m-)88)r@c)$y1mn6#fov@^hom+%wjg!+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['api.dasha-tristan-wedding.com']
+ALLOWED_HOSTS = [
+    'api.dasha-tristan-wedding.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -75,23 +79,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-CORS_ALLOW_ALL_ORIGINS = True
-#CORS_ALLOWED_ORIGINS = [
-#    # Local Development (Next.js usually runs on 3000)
-#    "http://localhost:3000",
-#    "http://127.0.0.1:3000",
-
-#    # Production Amplify URL
-#    "https://main.d12li6v9q2hhjr.amplifyapp.com",
-#]
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://3.75.86.179'
+# Security: Stop allowing ALL origins. Only allow your frontend.
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "https://dasha-tristan-wedding.com",         # Your main frontend domain
+    "https://www.dasha-tristan-wedding.com",     # Include www if applicable
+    "http://localhost:3000",                     # For local development
 ]
-#CSRF_TRUSTED_ORIGINS = [
-#    "https://main.d12li6v9q2hhjr.amplifyapp.com",
-#]
+
+# CSRF settings are vital for POST requests (like your guest list)
+CSRF_TRUSTED_ORIGINS = [
+    "https://dasha-tristan-wedding.com",
+    "https://api.dasha-tristan-wedding.com"
+]
 
 
 # Database
@@ -99,22 +99,22 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 DATABASES = {
+    # This is the 'light' local database
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    # This is your production Cloud RDS
+    'rds': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',                # Your DB Name
-        'USER': 'postgres',                # Your Master Username
-        'PASSWORD': '4Q4>kbDbp-9*y~5j03QE2*1hCu8#',  # The password you set for RDS
-        'HOST': 'test-database.cpsyqeoueatq.eu-central-1.rds.amazonaws.com', # Found in RDS "Endpoint"
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '4Q4>kbDbp-9*y~5j03QE2*1hCu8#',
+        'HOST': 'test-database.cpsyqeoueatq.eu-central-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

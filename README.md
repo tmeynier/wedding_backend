@@ -1,6 +1,6 @@
-
 # Commands
 
+sqlite3 db.sqlite3
 psql -U postgres -d testdb      
 \dt
 exit

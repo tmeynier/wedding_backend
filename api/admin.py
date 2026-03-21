@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import (Item)
+from .models import Guest
 
-admin.site.register(Item)
+@admin.register(Guest)
+class GuestAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'created_at')
