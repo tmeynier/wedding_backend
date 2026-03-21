@@ -100,12 +100,12 @@ CSRF_TRUSTED_ORIGINS = [
 
 DATABASES = {
     # This is the 'light' local database
-    'default': {
+    'dev': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
     # This is your production Cloud RDS
-    'rds': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
