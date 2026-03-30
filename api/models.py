@@ -13,7 +13,7 @@ class Guest(models.Model):
     """
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    transport = models.CharField(max_length=100, default="Unknown")
+    transport = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
